@@ -1,0 +1,80 @@
+extends ../layout.pug
+
+block prepend styles
+  link(rel='stylesheet' href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css')
+
+block content
+  div(class='breadcrumb')
+    li Додавання нової станції в колекцію
+  form(id='shop-add-form' name='shop-add-form' class='form-inline' action='/addStation' method='POST')
+    div(class='form-group')
+      div(class='col-md-3')
+        label(for='name') Number
+      div(class='col-md-9')
+        input(id='name' name='number' value='' class='form-control')
+    div(class='form-group')
+      div(class='col-md-3')
+        label(for='name') Capacity
+      div(class='col-md-9')
+        input(id='name' name='capacity' value='' class='form-control')
+    div(class='form-group')
+      div(class='col-md-3')
+        label(for='name') Need
+      div(class='col-md-9')
+        input(id='name' name='need' value='' class='form-control')
+    div(class='form-group')
+      div(class='col-md-12')
+        button(type='submit' class='btn btn-primary') Create
+  br
+  div(class='breadcrumb')
+    li Редагування станції в колекції
+  form(id='shop-edit-form' name='shop-add-form' class='form-inline' action='/editStation' method='POST')
+    div(class='')
+      div(class='col-md-3')
+        label(for='') Stations
+      div(class='col-md-6')
+        select#OurShipEdit(name = 'index')
+          each val, index in space_stations
+            option= index + '. Номер: ' + val.number + '. Місткість: ' + val.capacity+ '. Потреба: ' + val.need
+    div
+      div(class='form-group')
+        div(class='col-md-3')
+          label(for='name') Number
+        div(class='col-md-9')
+          input( name='number' value='' class='form-control')
+      div(class='form-group')
+        div(class='col-md-12')
+          button(type='submit' class='btn btn-primary') Edit
+
+  div(class='breadcrumb')
+    li Видалення станції з колекції
+  form(id='shop-delete-form' name='shop-add-form' class='form-inline' action='/deleteStation' method='POST')
+    div(class='')
+      div(class='col-md-3')
+        label(for='') Stations
+      div(class='col-md-6')
+        select(name = 'index')
+          each val, index in space_stations
+            option= index + '. Номер: ' + val.number + '. Місткість: ' + val.capacity+ '. Потреба: ' + val.need
+        button(type='submit' class='btn btn-primary') Delete
+        p= info
+
+  div(class='breadcrumb')
+    li Пошук одної станції в колекції
+  form(id='shop-find-form' name='shop-add-form' class='form-inline' action='/findStation' method='POST')
+    div(class='')
+      div(class='form-group')
+
+        div(class='col-md-3')
+          label(for='name') Number
+        div(class='col-md-9')
+          input( name='number' value='' class='form-control')
+
+      div(class='form-group')
+        div(class='col-md-12')
+          button(type='submit' class='btn btn-primary') Find
+      p= find
+block append scripts
+  script(src='/static/js/models/shop.js')
+  script(src='//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')
+  script(src='/static/js/views/shop.js')

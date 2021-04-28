@@ -1,0 +1,31 @@
+extends ../layout.pug
+
+block prepend styles
+    link(rel='stylesheet' href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css')
+
+block content
+    div(class='breadcrumb')
+        li Доставлення товару
+    form(id='shop-add-form' name='shop-add-form' class='form-inline' action='/addDelivered_goods' method='POST')
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='name') Code
+            div(class='col-md-9')
+                input(id='name' name='code' value='' class='form-control')
+            div(class='col-md-3')
+                label(for='name') Planet
+            div(class='col-md-9')
+                input(id=' ' name='planets_name' value='' class='form-control')
+            div(class='col-md-3')
+                label(for='name') Station
+            div(class='col-md-9')
+                input(id=' ' name='station_code' value='' class='form-control')
+            div(class='form-group')
+                div(class='col-md-12')
+                    button(type='submit' class='btn btn-primary') Deliver
+            h4= info
+
+block append scripts
+    script(src='/static/js/models/shop.js')
+    script(src='//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')
+    script(src='/static/js/views/shop.js')
